@@ -1,5 +1,7 @@
 """
-https://www.nowcoder.com/exam/test/77331218/detail?pid=1088888&examPageSource=Company&testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany&testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91
+汽水瓶问题
+
+https://www.nowcoder.com/exam/test/77331218/detail?pid=1088888
 某商店规定：三个空汽水瓶可以换一瓶汽水，允许向老板借空汽水瓶（但是必须要归还）。
 小张手上有n个空汽水瓶，她想知道自己最多可以喝到多少瓶汽水。
 数据范围：输入的正整数满足
