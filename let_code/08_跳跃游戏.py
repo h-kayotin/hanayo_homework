@@ -19,9 +19,10 @@ def can_jump(nums: list[int]):
             return False
     return max_place >= len(nums)
 
+
 def can_jump2(nums: list[int]):
 
-    while i
+    pass
 
 
 if __name__ == '__main__':
