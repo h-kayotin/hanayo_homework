@@ -8,7 +8,10 @@ Date： 2024/2/7
 
 class MyHeap:
     def __init__(self, nums: list[int]):
+        """根据输入列表建堆"""
         self.max_heap = nums
+        for i in range(self.parent(self.size()-1), -1, -1):
+            self.sift_down(i)
 
     def peek(self) -> int:
         """访问堆顶元素"""
