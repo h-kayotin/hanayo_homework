@@ -30,7 +30,12 @@ class MyHeap:
         return (i - 1) // 2  # 向下整除
 
     def size(self):
+        """获取堆的大小"""
         return len(self.max_heap)
+
+    def is_empty(self):
+        """判断堆是否为空"""
+        return self.size()
 
     def swap(self, i, j):
         self.max_heap[i], self.max_heap[j] = self.max_heap[j], self.max_heap[i]
@@ -54,3 +59,34 @@ class MyHeap:
             self.swap(i, p)
             # 循环向上堆化
             i = p
+
+    def pop(self) -> int:
+        """元素出堆"""
+        # 判空处理
+        if self.is_empty():
+            raise IndexError("堆为空")
+        # 交换根节点与最右叶节点（交换首元素与尾元素）
+        self.swap(0, self.size() - 1)
+        # 删除节点
+        val = self.max_heap.pop()
+        # 从顶至底堆化
+        self.sift_down(0)
+        # 返回堆顶元素
+        return val
+
+    def sift_down(self, i: int):
+        """从节点i开始，从顶至底堆化"""
+        while True:
+            # 在左节点、右节点、当前节点中，找出最大的节点
+            l, r, ma = self.left(i), self.right(i), i
+            if l < self.size() and self.max_heap[l] > self.max_heap[ma]:
+                ma = l
+            if r < self.size() and self.max_heap[r] > self.max_heap[ma]:
+                ma = r
+            # 如果节点i已经是最大的了，或者lr越界，就跳出循环
+            if ma == i:
+                break
+            # 交换节点的值
+            self.swap(i, ma)
+            # 向下推进
+            i = ma
