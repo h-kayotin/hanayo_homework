@@ -15,5 +15,6 @@ class TestAddition(unittest.TestCase):
         # 测试是否为True
         self.assertTrue(2+3 == 6)
 
+
 if __name__ == "__main__":
     unittest.main()
