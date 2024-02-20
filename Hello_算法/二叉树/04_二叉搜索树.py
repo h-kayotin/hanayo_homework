@@ -1,5 +1,5 @@
 """
-04_二叉搜索树 - 
+04_二叉搜索树 - https://www.hello-algo.com/chapter_tree/binary_search_tree/#3
 
 Author: kayotin
 Date 2024/2/20
@@ -89,9 +89,12 @@ class BinarySearchTree:
                 self._root = child
         # 有2个子节点
         else:
+            # 获取中序遍历中 cur 的下一个节点
             temp: TreeNode = cur.right
+            # 递归删除节点 tmp
             while temp.left is not None:
                 temp = temp.left
                 self.remove(temp.val)
+            # 用temp替代cur
             cur.val = temp.val
 
