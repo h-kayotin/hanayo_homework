@@ -5,7 +5,6 @@ Author: kayotin
 Date 2024/2/4
 """
 
-import os.path
 
 # > 向右对齐 < 向左对齐
 a = '{:>20}'.format('contents')
