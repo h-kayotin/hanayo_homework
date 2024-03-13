@@ -8,15 +8,18 @@ import collections
 
 
 def long_set(nums):
+    # 去重
     num_set = set(nums)
+    # 初始化最长长度
     max_l = 0
     for num in nums:
+        # 仅在num可以作为序列开头的情况下进入内层循环
         if num - 1 not in num_set:
             max_this = 1
             while num+1 in num_set:
                 max_this += 1
                 num += 1
-
+            # 比较该序列长度，是否大于已有的序列长度
             max_l = max(max_l, max_this)
     return max_l
 
