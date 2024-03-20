@@ -80,7 +80,7 @@ def main():
         prices, points = work(key, value, attachments)
         # 对一列的所有值进行遍历
         for j in range(m, -1, -10):  # 价格是10的倍数
-            # 判断价格是否在预算内
+            # 遍历4种情况，判断价格是否在预算内
             for k in range(len(prices)):
                 # 如果在预算内
                 if j - prices[k] >= 0:
