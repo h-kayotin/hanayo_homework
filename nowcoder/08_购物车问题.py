@@ -62,7 +62,7 @@ def main():
         good = get_value(price, point)
         # 如果是主件
         if att == 0:
-            # 添加进主件字典
+            # 添加进主件字典,注意i+1，这样就和附件的主件对应上了
             main_goods[i+1] = good
         # 如果是附件
         else:
