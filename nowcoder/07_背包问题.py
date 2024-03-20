@@ -1,5 +1,5 @@
 """
-07_购物车问题 - 如何购买达到最大满意度？
+07_背包问题
 
 先读懂背包问题：https://blog.csdn.net/bohu83/article/details/91453227
 
@@ -29,35 +29,27 @@ def max_bag(n: int, m: int, weight: list[int], prices: list[int]):
 
     for i in range(1, n):
         for j in range(m):
-            if j + 1 - weight[i] >= 0:
-                res[i][j] = max(res[i-1][j], res[i-1][j+1-weight[i]] + prices[i-1])
+            # 大于零说明装了当前商品之后还有空位，那么最大值就是在res[i-1][j]和
+            #  当前价值prices[i] + 剩余格子价值
+            # 这两者之间取最大值
+            if j + 1 - weight[i] > 0:
+                res[i][j] = max(res[i-1][j],  prices[i] + res[i-1][j+1-weight[i]])
+            # 等于0，说明刚好能装这一个物品，所以最大值是要么上一行的这个格子，要么就是当前商品价值
+            elif j + 1 - weight[i] == 0:
+                res[i][j] = max(res[i - 1][j], prices[i])
+            # 如果小于0，那就还是取上一行的
             else:
                 res[i][j] = res[i-1][j]
+    print(res)
     return res[n-1][m-1]
 
 
 my_n = 3
 my_m = 4
-my_weights = [1, 3, 4]
-my_prices = [1500, 2000, 3000]
+my_weights = [1, 4, 3]
+my_prices = [1500, 3000, 2000]
 print(max_bag(my_n, my_m, my_weights, my_prices))
 
 
 
-
-
-
-def max_cart():
-    # 总预算
-    money = 1000
-    # 最多购买n件商品
-    n = 5
-    # 各商品价格,重要性如, q=0表示该商品可以单独购买，否则，需要购买前置物品 p - 1
-    goods = [
-        [800, 2, 0],
-        [400, 5, 1],
-        [300, 5, 1],
-        [400, 3, 0],
-        [500, 2, 0]
-    ]
 
