@@ -82,8 +82,6 @@ def main():
             # 不存在就创建这个key
             else:
                 attachments[att] = [good]
-    print(main_goods)
-    print(attachments)
     # 对主件字典进行遍历
     for key, value in main_goods.items():
         # prices列表和points列表，分别计算了4种情况的价格和满意度
@@ -96,10 +94,6 @@ def main():
                 if j - prices[k] >= 0:
                     # 最优解在 上一次的最优解 和 剩余预算的最优解+当前满意度 之间取大的那个
                     res_list[j] = max(res_list[j], res_list[j-prices[k]] + points[k])
-        if key == 1:
-            print(prices)
-            print(points)
-    print(res_list)
     return res_list[m]
 
 
