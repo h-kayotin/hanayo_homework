@@ -7,14 +7,21 @@ Date： 2024/3/20
 """
 
 
-class Good:
-    def __init__(self, price, point, q):
-        self.price = price
-        self.val = price*point
-        self.q = q
+def input_1():
+    """接收预算和商品总数输入"""
+    input_val_list = str(input()).split(" ")
+    n, m = int(input_val_list[0]), int(input_val_list[1])
+    return n, m
 
-    def __str__(self):
-        return f"{self.price} {self.val} {self.q}"
+
+def input_2(n):
+    """接收商品输入"""
+    goods = []
+    for i in range(n):
+        val_list = str(input()).split(" ")
+        row = [int(val_list[0]), int(val_list[1]), int(val_list[2])]
+        goods.append(row)
+    return goods
 
 
 def get_value(price, point):
@@ -36,7 +43,7 @@ def work(key, value, attachments):
         if len(attachments[key]) == 2:
             # 3.主件+附件2
             prices.append(prices[0] + attachments[key][1][0])
-            points.append(prices[0] + attachments[key][1][1])
+            points.append(points[0] + attachments[key][1][1])
             # 4.主件+ 附件1 + 附件2
             prices.append(prices[0] + attachments[key][0][0] + attachments[key][1][0])
             points.append(points[0] + attachments[key][0][1] + attachments[key][1][1])
@@ -46,11 +53,13 @@ def work(key, value, attachments):
 def main():
     # 总预算1000， 可选商品5
     m, n = 1000, 5
+    # m, n = input_1()
     # 商品的价格 重要度 是否附件
+    # goods = input_2(n)
     goods = [
         [800, 2, 0],
         [400, 5, 1],
-        [300, 5, 1],
+        [200, 5, 1],
         [400, 3, 0],
         [500, 2, 0]
     ]
@@ -73,7 +82,8 @@ def main():
             # 不存在就创建这个key
             else:
                 attachments[att] = [good]
-
+    print(main_goods)
+    print(attachments)
     # 对主件字典进行遍历
     for key, value in main_goods.items():
         # prices列表和points列表，分别计算了4种情况的价格和满意度
@@ -86,6 +96,9 @@ def main():
                 if j - prices[k] >= 0:
                     # 最优解在 上一次的最优解 和 剩余预算的最优解+当前满意度 之间取大的那个
                     res_list[j] = max(res_list[j], res_list[j-prices[k]] + points[k])
+        if key == 1:
+            print(prices)
+            print(points)
     print(res_list)
     return res_list[m]
 
