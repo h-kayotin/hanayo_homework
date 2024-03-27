@@ -38,24 +38,5 @@ def min_len_for_cells1(x: str, y: str):
     print(dp[n][m])
 
 
-def step_for_cells(x: str, y: str):
-    m, n = len(x), len(y)
-    dp = []
-    for i in range(n):
-        row_list = []
-        for j in range(m):
-            if x[j] == y[i]:
-                row_list.append(j)
-        dp.append(row_list)
-    print(dp)
-    res_list = []
-    for row in dp:
-        if not row:
-            continue
-        else:
-            # 每一行取值逻辑，这一行中第一个比当前值大，
-            pass
-
-
 if __name__ == '__main__':
-    step_for_cells("ABACDE", "BCDAA")
+    min_len_for_cells1("ABACDE", "BCDAA")
