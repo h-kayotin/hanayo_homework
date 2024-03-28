@@ -25,18 +25,34 @@ def min_len_for_cells1(x: str, y: str):
         for j in range(1, m + 1):
             # 第一种情况
             if x[j - 1] == y[i - 1]:
-                dp1 = dp[i - 1][j - 1] + 1
+                dp[i][j] = min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1]) + 1
             else:
-                dp1 = dp[i - 1][j - 1] + 2
-
-            # 第二种情况
-            dp2 = dp[i - 1][j] + 1
-            # 第三种情况
-            dp3 = dp[i][j - 1] + 1
-            dp[i][j] = min([dp1, dp2, dp3])
+                dp[i][j] = min(dp[i][j-1], dp[i-1][j]) + 1
 
     print(dp[n][m])
 
 
+def min_len_for_cells2(x: str, y: str):
+    """跳格子：空间优化"""
+    m, n = len(x), len(y)
+    dp = [0] * (m + 1)
+
+    # 初始化首行
+    for j in range(1, m+1):
+        dp[j] = j
+    # 状态转移
+    for i in range(1, n+1):
+        leftup = dp[0]
+        dp[0] += 1
+        for j in range(1, m+1):
+            temp = dp[j]
+            if x[i-1] == y[i-1]:
+                dp[j] = min(dp[j-1], dp[j], leftup) + 1
+            else:
+                dp[j] = min(dp[j]+1, dp[j-1]+1, leftup+2)
+            leftup = temp
+    return dp[m]
+
 if __name__ == '__main__':
     min_len_for_cells1("ABACDE", "BCDAA")
+    print(min_len_for_cells2("ABACDE", "BCDAA"))
