@@ -44,12 +44,25 @@ def max_bag(n: int, m: int, weight: list[int], prices: list[int]):
     return res[n-1][m-1]
 
 
+def max_bag2(n: int, m: int, weight: list[int], prices: list[int]):
+
+    dp = [[0] * (m+1) for _ in range(n+1)]
+    for i in range(1, n+1):
+        for j in range(1, m+1):
+            if weight[i-1] > j:
+                dp[i][j] = dp[i-1][j]
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i-1][j-weight[i-1]] + prices[i-1])
+    print(dp)
+    return dp[n][m]
+
+
 my_n = 3
 my_m = 4
 my_weights = [1, 4, 3]
 my_prices = [1500, 3000, 2000]
 print(max_bag(my_n, my_m, my_weights, my_prices))
 
-
+print(max_bag2(my_n, my_m, my_weights, my_prices))
 
 
