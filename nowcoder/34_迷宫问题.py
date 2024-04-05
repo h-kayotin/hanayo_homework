@@ -31,25 +31,26 @@ def dfs(row, col):
             # 走不了就回头，在已走路径删除，并重新至0
             matrix[x][y] = 0
             path.pop()
-    else:
-        return
+
+    return
 
 
-m, n = [int(x) for x in str(input()).split(" ")]
-matrix = []
-for i in range(m):
-    m_row = [int(x) for x in str(input()).split(" ")]
-    matrix.append(m_row)
+# m, n = [int(x) for x in str(input()).split(" ")]
+# matrix = []
+# for i in range(m):
+#     m_row = [int(x) for x in str(input()).split(" ")]
+#     matrix.append(m_row)
+m, n = 5, 5
+matrix = [
+    [0, 1, 0, 0, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 0, 1, 0]
+]
 # 开始节点
 path = [(0, 0)]
 # 标位1表示这个点已经走过
 matrix[0][0] = 1
 dfs(0, 0)
-
-
-
-
-
-
-
 

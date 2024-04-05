@@ -16,3 +16,52 @@ Author: hanayo
 Date： 2024/4/4
 """
 
+
+def check(board, x, y):
+    """
+    填入数字后，判断数独是否成立，
+    :param board: 棋盘
+    :param x: 填入数字的行
+    :param y: 填入数字的列
+    :return: 是否构成一个数独
+    """
+    # 验证y那一列，是否有相同数字
+    for i in range(9):
+        if i != x and board[i][y] == board[x][y]:
+            return False
+    # 验证x那一行，是否有相同数字
+    for j in range(9):
+        if j != y and board[x][j] == board[x][y]:
+            return False
+    # 验证填入数字的9宫格，是否有相同数字
+    m, n = 3 * (x // 3), 3 * (y // 3)
+    for i in range(3):
+        for j in range(3):
+            if (i + m != x or j + n != y) and board[i + m][j + n] == board[x][y]:
+                return False
+    return True
+
+
+def dfs(board: list[list[int]]):
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] == 0:
+                # 在1到9中选一个数字
+                for num in range(1, 10):
+                    board[i][j] = num
+                    if check(board, i, j) and dfs(board):
+                        return True
+                    # 回溯
+                    board[i][j] = 0
+                return False
+    return True
+
+
+matrix = []
+for i in range(9):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+dfs(matrix)
+for i in range(9):
+    matrix[i] = list(map(str, matrix[i]))
+    print(" ".join(matrix[i]))
