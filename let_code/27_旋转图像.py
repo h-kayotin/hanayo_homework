@@ -7,6 +7,7 @@
 Author: kayotin
 Date 2024/4/5
 """
+import copy
 
 
 def rotate_matrix(matrix: list[list[int]]):
@@ -19,6 +20,27 @@ def rotate_matrix(matrix: list[list[int]]):
         matrix[i] = res[i][::-1]
     print(matrix)
 
+
+def rotate_matrix2(matrix: list[list[int]]):
+    """辅助矩阵"""
+    n = len(matrix)
+    tmp = copy.deepcopy(matrix)
+
+    for i in range(n):
+        for j in range(n):
+            matrix[j][n-1-i] = tmp[i][j]
+
+
+def rotate_matrix3(matrix: list[list[int]]):
+    """原地修改"""
+    n = len(matrix)
+    for i in range(n // 2):
+        for j in range( (n+1) // 2):
+            tmp = matrix[i][j]
+            matrix[i][j] = matrix[n - j - 1][i]
+            matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1]
+            matrix[n - i - 1][n - j - 1] = matrix[j][n - 1 - i]
+            matrix[j][n - 1 - i] = tmp
 
 
 my_ma = [[1,2,3],[4,5,6],[7,8,9]]
