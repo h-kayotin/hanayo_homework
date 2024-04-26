@@ -54,8 +54,4 @@ def sort_list2(head: Optional[ListNode]):
     return res.next
 
 
-def sort_list3(head: Optional[ListNode]):
-    """不使用递归，归并排序"""
-    h, length, intv = head, 0, 1
-    while h:
-        h, length = h.next, length+1
+
