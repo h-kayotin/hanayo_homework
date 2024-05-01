@@ -21,9 +21,9 @@ class Solution:
         """
         def dfs(node: Optional[TreeNode], pre: Optional[TreeNode]):
             if node is None:
-                return
-            pre = dfs(node.left, pre)
+                return pre
             pre = dfs(node.right, pre)
+            pre = dfs(node.left, pre)
 
             node.right = pre
             node.left = None
