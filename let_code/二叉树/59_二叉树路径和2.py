@@ -16,7 +16,7 @@ class TreeNode:
 
 
 class Solution:
-    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+    def maxPathSum(self, root: Optional[TreeNode]):
         ans = -inf
 
         def dfs(node: Optional[TreeNode]):
