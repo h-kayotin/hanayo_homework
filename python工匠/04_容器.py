@@ -7,6 +7,7 @@ Date： 2024/5/16
 import bisect
 import time
 import typing
+from collections import OrderedDict
 
 # 避免频繁扩充列表 / 创建新列表
 
@@ -87,3 +88,31 @@ def from_now(ts):
 
 now = time.time()
 print(from_now(now - 24))
+
+
+# 使用解包操作，可以直接合并两个字典
+user = {**{"name": "alice"}, **{"movies": ["Fight Club"]}}
+print(user)
+
+# 使用next方式
+num_list = [3, 7, 8, 2, 21]
+# 返回第一个偶数
+print(next(i for i in num_list if i % 2 == 0))
+
+# 使用有序字典去重
+my_list = [10, 2, 3, 21, 10, 3]
+# 使用set去重，但是丢失了顺序
+print(set(my_list))
+# 使用有序字典去重，可以保留顺序
+print(list(OrderedDict.fromkeys(my_list).keys()))
+
+
+# 迭代器的枯竭
+nums = [1, 2, 3]
+nums_ite = (i*2 for i in nums)
+for num in nums_ite:
+    print(num)
+# 第二次遍历，里面已经没有值了。
+for num in nums_ite:
+    print(num)
+
