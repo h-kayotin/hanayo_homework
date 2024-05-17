@@ -4,6 +4,8 @@
 Author: hanayo
 Date： 2024/5/16
 """
+import bisect
+import time
 import typing
 
 # 避免频繁扩充列表 / 创建新列表
@@ -60,3 +62,28 @@ def add_ellipsis_gen(comments: typing.Iterable[str], max_length: int = 12):
 # 处理放在元组里的评论
 comments = ("Implementation note", "Changed", "ABC for generator")
 print("\n".join(add_ellipsis_gen(comments)))
+
+
+# 使用元组来简化分支
+break_points = (1, 60, 3600, 3600 * 24)
+tuples = (
+    # unit, template
+    (1, "less than 1 second ago"),
+    (1, "{units} seconds ago"),
+    (60, "{units} minutes ago"),
+    (3600, "{units} hours ago"),
+    (3600 * 24, "{units} days ago"),
+)
+
+
+def from_now(ts):
+    """接收一个过去的时间戳，返回距离当前时间的相对时间文字描述
+    """
+    seconds_delta = int(time.time() - ts)
+    # bisect在有序结构中查找插入位置，bisect.bisect(有序列表，值)，比如 1 2 5 查找 4的查找位置
+    unit, txt = tuples[bisect.bisect(break_points, seconds_delta)]
+    return txt.format(units=seconds_delta//unit)
+
+
+now = time.time()
+print(from_now(now - 24))
