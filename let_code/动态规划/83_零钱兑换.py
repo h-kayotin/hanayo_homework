@@ -18,10 +18,10 @@ def coin_change(coins: List[int], amount: int) -> int:
     """
     dp[i] 表示组成i金额，最少需要的硬币数量
     dp[i+1]的转移有以下情况：
+    1.不选当前硬币，那么就还是dp[i][j]
+    2.选当前硬币 那么在 min(dp[i][j], dp[i+1][j-val] + 1)中取较小的那个
 
-    :param coins:
-    :param amount:
-    :return:
+    dp[i+1][j-val] + 1 表示，选了当前硬币，所以减去该面额，然后j-val中的
     """
     n = len(coins)
     dp = [[inf] * (amount+1) for _ in range(n+1)]
