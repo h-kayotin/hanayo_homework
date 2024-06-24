@@ -20,3 +20,6 @@ def multiply(x, y):
 # 偏函数，可以固定其中一些参数
 double = functools.partial(multiply, 2)
 print(double(4))
+
+
+# decimal库可以解决浮点数的运算问题
