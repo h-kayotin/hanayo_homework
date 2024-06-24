@@ -40,5 +40,17 @@ def daily_temperatures2(temperatures: List[int]) -> List[int]:
     return ans
 
 
+def daily_temperatures3(temperatures: List[int]) -> List[int]:
+    """单调栈, 从左到右"""
+    n = len(temperatures)
+    ans = [0] * n
+    st = []
+    for i, t in enumerate(temperatures):
+        while st and t > temperatures[-1]:
+            j = st.pop()
+            ans = i - j
+        st.append(i)
+    return ans
+
 
 print(daily_temperatures([30,40,50,60]))
