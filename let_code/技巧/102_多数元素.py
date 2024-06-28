@@ -29,8 +29,9 @@ def majority_element2(self, nums: List[int]) -> int:
     return nums[int(len(nums)/2)]
 
 
-def majority_element3(self, nums: List[int]) -> int:
+def majority_element3(nums: List[int]) -> int:
     """摩尔投票法"""
+    x = 0
     votes = 0
     for num in nums:
         if votes == 0:
