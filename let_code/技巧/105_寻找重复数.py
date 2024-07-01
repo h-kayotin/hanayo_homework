@@ -34,6 +34,7 @@ def find_duplicate2(self, nums: List[int]) -> int:
         if slow == fast:
             break
     # 第二次相遇
+    slow = 0
     while slow != fast:
         slow = next_val(slow)
         fast = next_val(fast)
