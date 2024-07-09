@@ -13,8 +13,11 @@ from typing import List
 
 def word_break(self, s: str, wordDict: List[str]) -> bool:
     n = len(s)
+    # dp[i]表示s的前i位是否可以用字典中的单词表示
     dp = [False] * (n+1)
+    # 空字符可以表示
     dp[0] = True
+    # 遍历区间[0,n)
     for i in range(n):
         for j in range(i+1, n+1):
             if dp[i] and (s[i:j] in wordDict):

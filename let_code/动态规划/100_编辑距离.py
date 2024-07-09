@@ -2,6 +2,9 @@
 100_编辑距离 - 
 给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数  。
 Author: hanayo
+
+
+https://leetcode.cn/problems/edit-distance/solutions/6455/zi-di-xiang-shang-he-zi-ding-xiang-xia-by-powcai-3/?envType=study-plan-v2&envId=dynamic-programming
 Date： 2024/6/27
 """
 
@@ -23,5 +26,6 @@ def min_distance(self, word1: str, word2: str) -> int:
             if word1[i-1] == word2[j-1]:
                 dp[i][j] = dp[i-1][j-1]
             else:
+                # 分别对应 替换 删除 插入
                 dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1
     return dp[n][m]
