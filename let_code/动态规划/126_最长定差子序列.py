@@ -18,3 +18,4 @@ def longest_subsequence2(self, arr: List[int], difference: int) -> int:
         else:
             dp[num] = 1
     return max(dp.values())
+
