@@ -24,4 +24,4 @@ def find_longest_chain(self, pairs: List[List[int]]) -> int:
     return max(dp)
 
 
-find_longest_chain(1, [[3,4],[2,3],[1,2]])
+find_longest_chain(1, [[3, 4], [2, 3],[1, 2]])
