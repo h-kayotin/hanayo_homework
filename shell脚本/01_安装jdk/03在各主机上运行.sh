@@ -1,4 +1,5 @@
 #!/bin/bash
+# 在指定主机运行安装
 
 # 目标主机 IP 范围
 network="192.168.32"
@@ -33,6 +34,6 @@ for ip in $(seq ${start_ip} ${end_ip})
 do
     target_ip=${network}.${ip}
     echo "正在运行脚本在 ${target_ip}..."
-    run_script "$target_ip" "/opt/a.sh"
+    run_script "$target_ip" "/opt/install_jdk.sh"
 done
 echo "脚本运行完成。请查看日志文件 ${log_file} 获取详细结果。"
