@@ -1,5 +1,5 @@
 #!/bin/bash
-#将mysql安装脚本发送到指定机器然后安装，
+#将redis安装脚本和安装文件发送到指定机器然后安装
 
 # 目标主机 IP 范围
 network="192.168.32"
@@ -11,7 +11,7 @@ current_date=$(date +%Y%m%d)
 current_time=$(date +%H%M)
 
 # 日志文件名
-log_file="${current_date}_${current_time}.log"
+log_file="${current_date}_${current_time}_redis安装.log"
 
 # 发送文件并记录结果到日志文件
 function send_file() {
@@ -35,13 +35,21 @@ for ip in $(seq ${start_ip} ${end_ip})
 do
     target_ip=${network}.${ip}
     echo "正在复制文件到 ${target_ip}..."
-    send_file "$target_ip" "/opt/mysql.sh"
+    send_file "$target_ip" "/opt/redis.sh"
+    send_file "$target_ip" "/opt/redis-7.0.0.tar.gz" &
     if [ $? -eq 0 ]; then
         echo "文件复制成功到 ${target_ip}"
-            # 执行远程脚本
-        ssh root@"$target_ip" "source /opt/mysql.sh" >> "$log_file"
     else
         echo "文件复制失败到 ${target_ip}"
     fi
 done
+
+# 执行脚本，并行执行
+for ip in $(seq ${start_ip} ${end_ip})
+do
+    target_ip=${network}.${ip}
+    ssh root@"$target_ip" "source /opt/redis.sh" >> "$log_file" 2>&1 &
+done
+wait
+
 echo "运行完成。请查看日志文件 ${log_file} 获取详细结果。"
