@@ -1,5 +1,5 @@
 #!/bin/bash
-#在指定目标范围ip的主机间建立信任关系
+#在指定目标范围ip的主机间建立信任关系，注意需要安装expect
 
 # 判断公钥是否已存在，不存在就生成
 echo "开始运行>>>"
@@ -15,8 +15,8 @@ pw="abc@1234"
 
 # 目标主机 IP 范围
 network="192.168.32"
-start_ip=22
-end_ip=23
+start_ip=32
+end_ip=33
 
 # 用expect模拟输入，使用ssh-copy-id命令将公钥复制到各目标主机
 for ip in $(seq ${start_ip} ${end_ip})
