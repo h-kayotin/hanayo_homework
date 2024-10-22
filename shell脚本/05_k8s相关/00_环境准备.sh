@@ -10,6 +10,7 @@ cat >> /etc/hosts << EOF
 192.168.32.31 node31
 192.168.32.32 node32
 192.168.32.33 node33
+192.168.32.31  cluster-endpoint
 EOF
 
 # 建立信任关系 略
