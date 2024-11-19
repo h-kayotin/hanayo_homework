@@ -35,4 +35,12 @@ kubectl describe pod calico-node-99pf4 -n kube-system
 # 2.查看是哪个node上缺少对应镜像
 kubectl get pods -n kube-system -o wide
 # 3.手动执行pull命令
+docker pull docker.m.daocloud.io/calico/cni:v3.20.6
+docker pull docker.m.daocloud.io/calico/pod2daemon-flexvol:v3.20.6
+docker pull docker.m.daocloud.io/calico/node:v3.20.6
+docker pull docker.m.daocloud.io/calico/kube-controllers:v3.20.6
 # 4.修改tag
+docker tag docker.m.daocloud.io/calico/cni:v3.20.6 docker.io/calico/cni:v3.20.6
+docker tag docker.m.daocloud.io/calico/pod2daemon-flexvol:v3.20.6 docker.io/calico/pod2daemon-flexvol:v3.20.6
+docker tag docker.m.daocloud.io/calico/node:v3.20.6 docker.io/calico/node:v3.20.6
+docker tag docker.m.daocloud.io/calico/kube-controllers:v3.20.6 docker.io/calico/kube-controllers:v3.20.6

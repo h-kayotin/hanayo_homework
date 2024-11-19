@@ -2,8 +2,8 @@
 # 修改主机名和IP
 
 # 获取用户输入的IP地址和主机名，-r参数用于禁用反斜杠的转义功能
-read -rp "请输入新的IP地址，例如192.168.32.31/24: " ip_address
-read -rp "请输入新的主机名: " hostname
+read -rep "请输入新的IP地址，例如192.168.32.31/24: " ip_address
+read -rep "请输入新的主机名: " hostname
 
 # 获取当前网卡信息
 interface=$(ip route | awk '/default/ { print $5 }')

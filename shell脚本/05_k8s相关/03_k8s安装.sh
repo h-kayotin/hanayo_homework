@@ -9,21 +9,9 @@ systemctl enable kubelet && systemctl start kubelet
 yum install -y kubelet-1.20.9 kubeadm-1.20.9
 systemctl enable kubelet && systemctl start kubelet
 
-# docker的systemd配置，按需
-cat > /etc/docker/daemon.json <<EOF
-{
-  "registry-mirrors": [
-    "https://docker.m.daocloud.io",
-    "https://registry.aliyuncs.com",
-    "https://registry.docker-cn.com",
-    "https://docker.mirrors.ustc.edu.cn"
-    ],
-  "exec-opts": ["native.cgroupdriver=systemd"]
-}
-EOF
 
-systemctl restart docker
-systemctl status docker
+
+
 
 
 # 常用命令
@@ -43,8 +31,14 @@ kubeadm join cluster-endpoint --token xxxxxx \
 kubeadm token list
 # 生产新token
 kubeadm token create --print-join-command
+
+
+
+
 # 查看集群状态
 kubectl cluster-info
+
+
 # 运行管理命令前
 export KUBECONFIG=/etc/kubernetes/admin.conf
 # 查看nodes
