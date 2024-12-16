@@ -27,6 +27,7 @@ sed -i 's/bind-address/#bind-address/g' /etc/my.cnf
 # 更新用户主机
 mysql -uroot -p"$new_pw" -e "use mysql;update user set user.Host='%' where user.User='root';flush privileges;"
 sleep 2
+# 推荐使用IDENTIFIED WITH caching_sha2_password
 mysql -uroot -p"$new_pw" -e "ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'Abc@1234';flush privileges;"
 
 # 重启mysql
