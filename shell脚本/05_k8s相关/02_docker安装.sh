@@ -20,7 +20,12 @@ cat > /etc/docker/daemon.json <<EOF
     "https://registry.docker-cn.com",
     "https://docker.mirrors.ustc.edu.cn"
     ],
-  "exec-opts": ["native.cgroupdriver=systemd"]
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  }
 }
 EOF
 
